@@ -45,9 +45,10 @@ h2{
     font-style: italic;
     font-family:"Brush Script", cursive;
 }
+/*
 
    
-
+/*
 .header{display:flex;
 
   align-items:left;
@@ -58,7 +59,7 @@ h2{
  background-color:rgb(34,33,33);
    border-top: 5px double; 
   text-align:auto;
-}
+}*/
 
 
 
@@ -99,6 +100,16 @@ margin-right: 1px;
   
 
 }
+.box{border: 1px 1px solid #ccc;
+    padding: 10px;
+   box-shadow: 5px 5px 5px #cc9900;
+  float: center;
+}
+#logo{
+  max-width:30%;
+border-radius: 46px;
+margin-right: 15px;}
+/*
 nav ul {
 	list-style-type: none;
 	overflow: hidden;
@@ -144,7 +155,7 @@ nav {
 	nav a:hover {
 		/* 	background-color: #bbb;
 	color: #36454f; */
-		--d: 75%;
+	/*	--d: 75%;
 	}
 @media only screen and (min-width: 37.5em) {
 	h1 {
@@ -152,7 +163,7 @@ nav {
 	}
 
 	/* Horizontal Menu Examples */
-	/* Flex *********************/
+	/* Flex *********************//*
 	 		nav ul { display: flex; }
 		  nav ul li { flex: 1 1 auto; } 
 
@@ -165,7 +176,7 @@ nav {
 
 	
 
-/* Desktop Views ****************************/
+/* Desktop Views ****************************//*
 @media only screen and (min-width: 60em) {
 	h1 {
 		font-size: 2rem;
@@ -180,24 +191,82 @@ nav {
 		grid-column: span 1;
 	}
 }
-.box{border: 1px 1px solid #ccc;
-    padding: 10px;
-   box-shadow: 5px 5px 5px #cc9900;
-  float: center;
+*/
+/* Small/Phone View ***************/
+nav {
+	margin: 0 auto;
+	max-width: 760px;
+	background-color: tomato;
 }
-#logo{
-  max-width:30%;
-border-radius: 46px;
-margin-right: 15px;}
+.navigation {
+	list-style: none;
+	padding: 0;
+}
+.navigation li:first-child {
+	display: block;
+}
+.navigation li {
+	display: none;
+}
+.navigation a {
+	display: block;
+	padding: 0.75rem;
+	text-align: left;
+	text-decoration: none;
+	color: black;
+	font-weight: 700;
+	transition: 0.5s;
+	font-size: clamp(1rem, 2vmin, 1.5rem);
+}
+
+.navigation a.ham::before {
+	content: "";
+}
+
+.navigation a:hover {
+	color: white;
+	background-color: black;
+}
+
+/* the onclick JS toggles the .reponsive class from display none (.navigation li) to display block because the responsive class is added to the end of the class list like this in HTML.
+  <ul class="navigation responsive">
+*/
+.responsive li {
+	display: block;
+}
+
+.responsive a.ham::before {
+	content: "✖️";
+}
+
+/* Media Query for medium+ views */
+@media only screen and (min-width: 32.5em) {
+	.navigation {
+		display: flex;
+	}
+	.navigation li {
+		display: block; /* change state in small view */
+		flex: 1 1 auto;
+	}
+	.navigation a {
+		text-align: center;
+	}
+	.navigation li:first-child {
+		display: none;
+	}
+}
+
 
 
 
       </style>
+   
     <div id="content">
       <header>
         <div class="logo"><img src="https://scontent.ffbm1-1.fna.fbcdn.net/v/t1.15752-9/272183750_1080411762807699_7773116523749168114_n.jpg?_nc_cat=106&ccb=1-5&_nc_sid=ae9488&_nc_eui2=AeHvTqtddqQIpRkiUTGGuXHYhq59LdSqDbKGrn0t1KoNssFqmfFu_LB-jiGLUQvgxsu_2VlVNhVkpOe2dobqLMe6&_nc_ohc=-Lgoi95Psr4AX889x72&_nc_ht=scontent.ffbm1-1.fna&oh=03_AVIgkPiG1duOjUpqP9KjwAzp_9SVLyccl3JY_Tknz4pBtw&oe=621153B0" alt="bizibisarovLOGO" width="20%"></div>
        <br> <nav>
-            <ul>
+            <ul class="navigation">
+              <li><a class="ham" href="#">Menu</a></li>
                   <li><a href="https://kally-m.github.io/Mode-Bak/">Home</a></li>
                <li><a href="https://impartial-prism-society.glitch.me/">Discover</a></li>
               
@@ -208,6 +277,15 @@ margin-right: 15px;}
         </nav>
       </header>
       <main>
+        <script>
+          const hambutton = document.querySelector('.ham');
+  const mainnav = document.querySelector('.navigation')
+  
+  hambutton.addEventListener('click', () => {mainnav.classList.toggle('responsive')}, false);
+  
+  // To solve the mid resizing issue with responsive class on
+  window.onresize = () => {if (window.innerWidth > 760) mainnav.classList.remove('responsive')};
+  </script>
         <br>
       
       <h1><center>welcome to home page</center></h1> <br>
